@@ -56,18 +56,18 @@
         }
     ],
 	"globalStyle": {
-		"navigationBarTextStyle": "white",
-		"navigationBarBackgroundColor": "#C0E8B9",
-		"backgroundColor": "#EEEEEE",
+		// "navigationBarTextStyle": "white",
+		// "navigationBarBackgroundColor": "#C0E8B9",
+		// "backgroundColor": "#EEEEEE",
 		"app-plus": {
 			"bounce": "none" // 取消APP端iOS回弹
 		}
 	},
 	"tabBar": {
 		"color": "#818181",
-		"selectedColor": "#C0E8B9",
-		"backgroundColor": "#FFFFFF",
-		"borderStyle": "black",
+		// "selectedColor": "#C0E8B9",
+		// "backgroundColor": "#FFFFFF",
+		// "borderStyle": "black",
 		"list": [{
 				"pagePath": "pages/main/home/home",
 				"iconPath": "static/images/main/home_normal.png",

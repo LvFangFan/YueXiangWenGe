@@ -36,7 +36,7 @@
 			}
 		},
 		created() {
-			this.themeType = this.themeType = this.$store.state.configInfo.themeType
+			this.themeType =  this.config.getThemeType(this)
 		},
 		methods:{
 			clickWay(){

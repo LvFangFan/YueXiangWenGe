@@ -1,4 +1,5 @@
 <script>
+	import {setDarkTabAndNavBar} from '@/utils/config.js'
 	export default {
 		onLaunch: function() {
 			const langInfo = uni.getStorageSync('langInfo')

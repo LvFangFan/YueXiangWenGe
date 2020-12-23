@@ -11,6 +11,9 @@
 				
 			};
 		},
+		onLoad() {
+			this.config.setDarkTabAndNavBar(this)
+		},
 		onShow() {
 			this.common.setNavTextWay(this,'首页')
 			uni.setTabBarItem({

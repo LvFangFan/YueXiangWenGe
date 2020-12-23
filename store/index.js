@@ -8,8 +8,8 @@ const store = {
 		configInfo:{
 			isFirst:true,//是否第一次打开软件
 			lang:'zh',//选择语言
-			themeType:'dark',//主体类型
-			isDark:false,//暗夜模式
+			themeType:'normal',//主题类型
+			isDark:true,//暗夜模式
 		},
 		langInfo:{
 			language:'简体中文',

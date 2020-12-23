@@ -1,7 +1,7 @@
 <template>
 	<view class="lff_content" :class="themeType + '_bg_color'">
 		<view class="user_content_view" :class="themeType + '_bg_color'">
-			<view class="user_top lf_column_a_f">
+			<view class="user_top lf_column_a_f" :style="{opacity:themeType == 'dark' ? 0.75 : 1.0}">
 				<image class="user_top_icon" src="/static/images/mine/head_portrait.png"></image>
 				<text class="user_top_text">{{name}}</text>
 			</view>
@@ -39,7 +39,8 @@
 			};
 		},
 	onLoad() {
-		this.themeType = this.$store.state.configInfo.themeType
+		this.themeType = this.config.getThemeType(this)
+		this.config.setDarkTabAndNavBar(this)
 	},
 		onShow() {
 			this.list[2].desp = this.$store.state.langInfo.language 

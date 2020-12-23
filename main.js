@@ -17,6 +17,9 @@ Vue.component('mescroll-uni', MescrollUni)
 import common from '@/utils/common.js'
 Vue.prototype.common = common
 
+import config from '@/utils/config.js'
+Vue.prototype.config = config
+
 
 // i18n部分的配置
 // 引入语言包，注意路径
