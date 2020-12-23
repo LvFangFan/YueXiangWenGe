@@ -1,0 +1,30 @@
+@import '~@/config/style/flex.css';
+@import '~@/config/style/config.scss';
+// 常用基础配置
+
+// 系统基础配置
+.lf_s_safe_b{
+	padding-bottom: constant(safe-area-inset-bottom);
+	padding-bottom: env(safe-area-inset-bottom);
+	box-sizing: content-box;
+}//底部安全距离
+
+/* 去掉button的边框 */
+button::after{ border: none;} 
+
+// 通用提示文字
+.lf_prompt_style{
+	font-size: 26rpx;
+	color: #FF5A5A;
+}
+
+// 超出一行省略
+.lf_omit_one{
+	 overflow: hidden;
+	  /*超出隐藏 */
+	  white-space: nowrap;
+	  /*强制在同一行显示*/
+	  text-overflow: ellipsis;
+	  /*省略号*/
+}
+

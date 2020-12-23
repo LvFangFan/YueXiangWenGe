@@ -1,0 +1,85 @@
+{
+	"easycom": {
+		// npm安装方式
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [
+		{
+			"path": "pages/main/home/home",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/main/mine/mine",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": false
+			}
+
+		}
+	    ,{
+            "path" : "pages/mine/language/language",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/about_us/about_us",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/browsing_history/browsing_history",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/my_collection/my_collection",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarBackgroundColor": "#C0E8B9",
+		"backgroundColor": "#EEEEEE",
+		"app-plus": {
+			"bounce": "none" // 取消APP端iOS回弹
+		}
+	},
+	"tabBar": {
+		"color": "#818181",
+		"selectedColor": "#C0E8B9",
+		"backgroundColor": "#FFFFFF",
+		"borderStyle": "black",
+		"list": [{
+				"pagePath": "pages/main/home/home",
+				"iconPath": "static/images/main/home_normal.png",
+				"selectedIconPath": "static/images/main/home_active.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/main/mine/mine",
+				"iconPath": "static/images/main/mine_normal.png",
+				"selectedIconPath": "static/images/main/mine_active.png",
+				"text": "我的"
+			}
+		]
+	}
+}
