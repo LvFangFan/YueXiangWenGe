@@ -43,6 +43,7 @@
 			};
 		},
 		onLoad() {
+			console.log(123123123);
 			this.setPageStyle()
 		},
 		onShow() {
@@ -97,6 +98,11 @@
 				for(let i=0; i < this.list.length; i++){
 					this.$refs.rowItemRef[i].setViewStyle()
 				}
+				// const infos = getApp().globalData.configInfo
+				// uni.setStorageSync('configInfo',getApp().globalData.configInfo)
+				// uni.reLaunch({
+				// 	url:'../main/main'
+				// })
 			},
 			// 设置页面样式
 			setPageStyle(){
@@ -104,7 +110,7 @@
 				this.isDart = getApp().globalData.configInfo.isDark
 				this.config.setDarkTabBarStyle()
 				this.config.setDarkNavBackground()
-				this.config.setBackgroundColor()
+				// this.config.setBackgroundColor()
 			}
 		}
 	}

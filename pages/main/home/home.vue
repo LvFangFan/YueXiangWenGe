@@ -18,11 +18,11 @@
 			this.setPageStyle()
 		},
 		onShow() {
-			const newDark = getApp().globalData.configInfo.isDark
-			if(this.isDart != newDark){
-				this.isDart = newDark
+			// const newDark = getApp().globalData.configInfo.isDark
+			// if(this.isDart != newDark){
+			// 	this.isDart = newDark
 				this.setPageStyle()
-			}
+			// }
 			this.common.setNavTextWay(this,'首页')
 			uni.setTabBarItem({
 				index: 0,

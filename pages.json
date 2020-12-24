@@ -5,6 +5,14 @@
 	},
 	"pages": [
 		{
+		    "path" : "pages/main/main/main",
+		    "style" :                                                                                    
+		    {
+		        "navigationStyle":"custom"
+		    }
+		    
+		},
+		{
 			"path": "pages/main/home/home",
 			"style": {
 				"navigationBarTitleText": "首页",
@@ -54,6 +62,7 @@
             }
             
         }
+        
     ],
 	"globalStyle": {
 		// "navigationBarTextStyle": "white",

@@ -70,7 +70,7 @@
 			height: 98rpx;
 			justify-content: space-between;
 			font-weight: 400;
-	
+			
 			&_title {
 				margin-left: 44rpx;
 				font-size: 28rpx;
