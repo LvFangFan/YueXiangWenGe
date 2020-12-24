@@ -1,5 +1,5 @@
 <template>
-	<view class="">
+	<view class="lff_content" :class="themeType + '_bg_color'">
 		
 	</view>
 </template>
@@ -8,13 +8,21 @@
 	export default {
 		data() {
 			return {
-				
+				isDart:false,
+				themeType:''
 			};
 		},
 		onLoad() {
-			this.config.setDarkTabAndNavBar(this)
+			this.isDart = getApp().globalData.configInfo.isDark
+			this.config.setDarkTabBarStyle()
+			this.setPageStyle()
 		},
 		onShow() {
+			const newDark = getApp().globalData.configInfo.isDark
+			if(this.isDart != newDark){
+				this.isDart = newDark
+				this.setPageStyle()
+			}
 			this.common.setNavTextWay(this,'首页')
 			uni.setTabBarItem({
 				index: 0,
@@ -28,6 +36,12 @@
 				"iconPath": "static/images/main/mine_normal.png",
 				"selectedIconPath": "static/images/main/mine_active.png"
 			})
+		},
+		methods:{
+			setPageStyle(){
+				this.config.setDarkNavBackground()
+				this.themeType = this.config.getThemeType()
+			}
 		}
 	}
 </script>

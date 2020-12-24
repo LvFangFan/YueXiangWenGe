@@ -4,7 +4,8 @@
 	<view :class="themeType + '_box_bg_color'" @click="clickWay">
 		<view class="user_list_item lf_row_a_f " :style="{'padding-right':arrowShow ? '0rpx' : '44rpx'}">
 			<text class="user_list_item_title">{{$t(title)}}</text>
-			<view class="user_list_item_right lf_row_a_f">
+			<u-switch style="margin-right: 20rpx;" :active-color="themeColor" v-if="switchShow" v-model="checked" @change="switchWay"></u-switch>
+			<view v-if="rightShow" class="user_list_item_right lf_row_a_f">
 				<text class="user_list_item_right_desp">{{desp}}</text>
 				<u-icon v-if="arrowShow" class="user_list_item_right_arrow" name="arrow-right"></u-icon>
 			</view>
@@ -20,6 +21,12 @@
 			title:{
 				type:String,default:''
 			},//标题
+			switchShow:{
+				type:Boolean,default:false
+			},//是否显示开关
+			rightShow:{
+				type:Boolean,default:true
+			},//是否显示右侧视图
 			desp:{
 			  type:String,default:''
 			},//描述
@@ -32,15 +39,25 @@
 		},
 		data(){
 			return {
-				themeType:''
+				themeType:'',
+				themeColor:'',
+				checked:false
 			}
 		},
 		created() {
-			this.themeType =  this.config.getThemeType(this)
+			this.setViewStyle()
 		},
+		
 		methods:{
+			setViewStyle(){
+				this.themeType =  this.config.getThemeType()
+				this.themeColor = this.config.getNewThemeColor(this.themeType)
+			},
 			clickWay(){
 				this.$emit('chooseClick',this.title)
+			},
+			switchWay(bool){
+				this.$emit('switchChange',bool)
 			}
 		}
 	}

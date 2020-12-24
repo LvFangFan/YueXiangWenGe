@@ -5,7 +5,7 @@
 				<image class="user_top_icon" src="/static/images/mine/head_portrait.png"></image>
 				<text class="user_top_text">{{name}}</text>
 			</view>
-			<oneItem v-for="(item,index) in list" :key="index" :title="item.title" :desp="item.desp" @chooseClick="chooseWay"></oneItem>
+			<oneItem ref="rowItemRef" v-for="(item,index) in list" :key="index" :switchShow="index === 0" :rightShow="index != 0"  :title="item.title" :desp="item.desp" @chooseClick="chooseWay" @switchChange="switchWay"></oneItem>
 		</view>
 	</view>
 	</view>
@@ -19,15 +19,19 @@
 		},
 		data() {
 			return {
-				themeType:'',
+				themeType: '',
 				name: '悦享文阁',
+				isDart:false,
 				list: [{
+						'title': '黑暗模式',
+						'desp': ''
+					}, {
 						'title': '浏览记录',
 						'desp': ''
-					},{
+					}, {
 						'title': '我的收藏',
 						'desp': ''
-					},{
+					}, {
 						'title': '多语言',
 						'desp': ''
 					},
@@ -38,14 +42,13 @@
 				]
 			};
 		},
-	onLoad() {
-		this.themeType = this.config.getThemeType(this)
-		this.config.setDarkTabAndNavBar(this)
-	},
+		onLoad() {
+			this.setPageStyle()
+		},
 		onShow() {
-			this.list[2].desp = this.$store.state.langInfo.language 
-			this.list[3].desp = this.$t('版本') + this.$store.state.version 
-			this.common.setNavTextWay(this,'我的')
+			this.list[2].desp = this.$store.state.langInfo.language
+			this.list[3].desp = this.$t('版本') + this.$store.state.version
+			this.common.setNavTextWay(this, '我的')
 			uni.setTabBarItem({
 				index: 0,
 				text: this.$t('首页'),
@@ -68,11 +71,11 @@
 							url: '../../mine/browsing_history/browsing_history'
 						})
 						break;
-						case '我的收藏':
-							uni.navigateTo({
-								url: '../../mine/my_collection/my_collection'
-							})
-							break;
+					case '我的收藏':
+						uni.navigateTo({
+							url: '../../mine/my_collection/my_collection'
+						})
+						break;
 					case '多语言':
 						uni.navigateTo({
 							url: '../../mine/language/language'
@@ -87,6 +90,21 @@
 
 						break;
 				}
+			},
+			switchWay(bool){
+				getApp().globalData.configInfo.isDark = bool
+				this.setPageStyle()
+				for(let i=0; i < this.list.length; i++){
+					this.$refs.rowItemRef[i].setViewStyle()
+				}
+			},
+			// 设置页面样式
+			setPageStyle(){
+				this.themeType = this.config.getThemeType()
+				this.isDart = getApp().globalData.configInfo.isDark
+				this.config.setDarkTabBarStyle()
+				this.config.setDarkNavBackground()
+				this.config.setBackgroundColor()
 			}
 		}
 	}
@@ -94,7 +112,7 @@
 
 <style lang="scss">
 	@import '~@/config/style/config.scss';
-	
+
 	.user_content_view {
 		width: calc(100% - 50rpx);
 		margin: 0 25rpx;

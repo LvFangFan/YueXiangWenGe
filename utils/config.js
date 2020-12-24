@@ -1,57 +1,98 @@
-
- const setDarkTabAndNavBar = (that) =>{
-	const isDark = that.$store.state.configInfo.isDark
-	const themeType = that.$store.state.configInfo.themeType
+const setDarkTabBarStyle = () => {
+	const isDark = getApp().globalData.configInfo.isDark
+	const themeType = getApp().globalData.configInfo.themeType
 	const themeColor = getThemeColor(themeType)
-	const tabStyle =  getDarkToTabStyle(isDark,themeColor)
-	 uni.setTabBarStyle({
-	 	backgroundColor:tabStyle.bgColor,
-		// color:tabStyle.color,
-		selectedColor:tabStyle.selectedColor
-	 })
-	 const newColor = isDark ? '#2D2D2D' : themeColor
+	const tabStyle = getDarkToTabStyle(isDark, themeColor)
+	uni.setTabBarStyle({
+		backgroundColor: tabStyle.bgColor,
+		selectedColor: tabStyle.selectedColor,
+		borderStyle:tabStyle.borderColor
+	})
+
+}
+const setDarkNavBackground = () => {
+	const isDark = getApp().globalData.configInfo.isDark
+	const themeType = getApp().globalData.configInfo.themeType
+	const themeColor = getThemeColor(themeType)
+	const newColor = isDark ? '#2D2D2D' : themeColor
 	uni.setNavigationBarColor({
-	    frontColor: '#ffffff',
-	    backgroundColor: newColor
+		frontColor: '#ffffff', //只能小写
+		backgroundColor: newColor
 	})
 }
+const setBackgroundColor = () =>{
+	const isDark = getApp().globalData.configInfo.isDark
+	const newColor = isDark ? '#2D2D2D' : '#F8F9FB'
+	uni.setBackgroundColor({
+		backgroundColor:newColor
+	})
+}
+
 // 设置tabbar
-const getDarkToTabStyle = (isDark,themeColor) =>{
-	if(isDark){
+const getDarkToTabStyle = (isDark, themeColor) => {
+	if (isDark) {
 		return {
-			bgColor:'#2D2D2D',
-			color:'#FFFFFF',
-			selectedColor:themeColor
+			bgColor: '#2D2D2D',
+			color: '#FFFFFF',
+			selectedColor: themeColor,
+			borderColor:'#2D2D2D'
 		}
-	}else{
+	} else {
 		return {
-			bgColor:'#FFFFFF',
-			color:'#828282',
-			selectedColor:themeColor
+			bgColor: '#FFFFFF',
+			color: '#828282',
+			selectedColor: themeColor,
+			borderColor:'#FFFFFF'
 		}
 	}
 }
 // 获得主题颜色
-const getThemeColor = (themeType,isDark) =>{
-	switch (themeType){
+const getThemeColor = (themeType) => {
+	let newColor = ''
+	switch (themeType) {
 		case 'normal':
-			return '#C0E8B9'
+			newColor = '#C0E8B9'
+			break;
 		default:
-			return '#FFFFFF'
+			newColor = '#FFFFFF'
+			break;
+	}
+	return newColor
+}
+// 获得主题颜色
+const getNewThemeColor = () =>{
+	const themeType = getApp().globalData.configInfo.themeType
+	let newColor = ''
+	switch (themeType) {
+		case 'normal':
+			newColor = '#C0E8B9'
+			break;
+		default:
+			newColor = '#FFFFFF'
+			break;
+	}
+	return newColor
+}
+
+// 获得主题类型 bool 是否用于黑暗模式
+const getThemeType = (bool = true) => {
+	const isDark = getApp().globalData.configInfo.isDark
+	const themeType = getApp().globalData.configInfo.themeType
+	if(bool){
+		return isDark ? 'dark' : themeType
+	}
+	else {
+		return themeType
 	}
 }
 
-// 获得主题类型
-const getThemeType = (that) =>{
-	const isDark = that.$store.state.configInfo.isDark
-	let themeType = isDark ? 'dark' : that.$store.state.configInfo.themeType
-	return  themeType
-}
-
 export default {
-	setDarkTabAndNavBar,
+	setDarkTabBarStyle,
+	setDarkNavBackground,
+	setBackgroundColor,
 	getThemeType,
 	getThemeColor,
+	getNewThemeColor,
 	getDarkToTabStyle
-	
+
 }
