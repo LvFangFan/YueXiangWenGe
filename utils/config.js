@@ -6,7 +6,7 @@ const setDarkTabBarStyle = () => {
 	uni.setTabBarStyle({
 		backgroundColor: tabStyle.bgColor,
 		selectedColor: tabStyle.selectedColor,
-		borderStyle:tabStyle.borderColor
+		borderStyle: tabStyle.borderColor
 	})
 
 }
@@ -17,14 +17,18 @@ const setDarkNavBackground = () => {
 	const newColor = isDark ? '#2D2D2D' : themeColor
 	uni.setNavigationBarColor({
 		frontColor: '#ffffff', //只能小写
-		backgroundColor: newColor
+		backgroundColor: newColor,
+		animation: {
+			duration: 0,
+			timingFunc: 'easeIn'
+		}
 	})
 }
-const setBackgroundColor = () =>{
+const setBackgroundColor = () => {
 	const isDark = getApp().globalData.configInfo.isDark
 	const newColor = isDark ? '#2D2D2D' : '#F8F9FB'
 	uni.setBackgroundColor({
-		backgroundColor:newColor
+		backgroundColor: newColor
 	})
 }
 
@@ -35,14 +39,14 @@ const getDarkToTabStyle = (isDark, themeColor) => {
 			bgColor: '#2D2D2D',
 			color: '#FFFFFF',
 			selectedColor: themeColor,
-			borderColor:'#2D2D2D'
+			borderColor: '#2D2D2D'
 		}
 	} else {
 		return {
 			bgColor: '#FFFFFF',
 			color: '#828282',
 			selectedColor: themeColor,
-			borderColor:'#FFFFFF'
+			borderColor: '#FFFFFF'
 		}
 	}
 }
@@ -60,7 +64,7 @@ const getThemeColor = (themeType) => {
 	return newColor
 }
 // 获得主题颜色
-const getNewThemeColor = () =>{
+const getNewThemeColor = () => {
 	const themeType = getApp().globalData.configInfo.themeType
 	let newColor = ''
 	switch (themeType) {
@@ -78,10 +82,9 @@ const getNewThemeColor = () =>{
 const getThemeType = (bool = true) => {
 	const isDark = getApp().globalData.configInfo.isDark
 	const themeType = getApp().globalData.configInfo.themeType
-	if(bool){
+	if (bool) {
 		return isDark ? 'dark' : themeType
-	}
-	else {
+	} else {
 		return themeType
 	}
 }

@@ -4,51 +4,52 @@
 			<view class="user_top lf_column_a_f" :style="{opacity:themeType == 'dark' ? 0.75 : 1.0}">
 				<image class="user_top_icon" src="/static/images/mine/head_portrait.png"></image>
 				<text class="user_top_text">{{name}}</text>
+				<image class="dark_image" :src="darkImgUrl" @click="changeDarkWay"></image>
 			</view>
-			<oneItem ref="rowItemRef" v-for="(item,index) in list" :key="index" :switchShow="index === 0" :rightShow="index != 0"  :title="item.title" :desp="item.desp" @chooseClick="chooseWay" @switchChange="switchWay"></oneItem>
+			<two-row-item ref="rowItemRef" iconType="1" :iconName="item.iconName" v-for="(item,index) in list" :key="index"
+			 :title="item.title" :desp="item.desp"  @chooseClick="chooseWay" ></two-row-item>
 		</view>
 	</view>
 	</view>
 </template>
 
 <script>
-	import oneItem from '@/components/mine/one_item.vue'
+	import twoRowItem from '@/components/mine/two_row_item.vue'
 	export default {
 		components: {
-			oneItem
+			twoRowItem
 		},
 		data() {
 			return {
 				themeType: '',
 				name: '悦享文阁',
-				isDart:false,
+				isDart: false,
 				list: [{
-						'title': '黑暗模式',
-						'desp': ''
+						iconName:'clock',
+						title: '浏览记录',
+						desp: ''
 					}, {
-						'title': '浏览记录',
-						'desp': ''
+						iconName:'heart',
+						title: '我的收藏',
+						desp: ''
 					}, {
-						'title': '我的收藏',
-						'desp': ''
-					}, {
-						'title': '多语言',
-						'desp': ''
+						iconName:'setting',
+						title: '设置',
+						desp: ''
 					},
-					{
-						'title': '关于我们',
-						'desp': ''
+					{   iconName:'account',
+						title: '关于我们',
+						desp: ''
 					}
 				]
 			};
 		},
 		onLoad() {
-			console.log(123123123);
 			this.setPageStyle()
 		},
+
 		onShow() {
-			this.list[2].desp = this.$store.state.langInfo.language
-			this.list[3].desp = this.$t('版本') + this.$store.state.version
+			this.list[3].desp = this.$t('版本号') + this.$store.state.version
 			this.common.setNavTextWay(this, '我的')
 			uni.setTabBarItem({
 				index: 0,
@@ -63,6 +64,16 @@
 				"selectedIconPath": "static/images/main/mine_active.png"
 			})
 		},
+		// 
+		onHide() {
+			uni.$off('changeDark')
+		},
+		computed:{
+			darkImgUrl(){
+				return this.isDart ? '/static/images/mine/white_evening.png' : '/static/images/mine/white_day.png'
+			}
+		},
+		
 		methods: {
 			// 点击某一列响应方法 title 为列表文字标识
 			chooseWay(title) {
@@ -77,9 +88,9 @@
 							url: '../../mine/my_collection/my_collection'
 						})
 						break;
-					case '多语言':
+					case '设置':
 						uni.navigateTo({
-							url: '../../mine/language/language'
+							url: '../../mine/setting/setting'
 						})
 						break;
 					case '关于我们':
@@ -92,12 +103,14 @@
 						break;
 				}
 			},
-			switchWay(bool){
-				getApp().globalData.configInfo.isDark = bool
+			changeDarkWay() {
+				this.isDark = !this.isDark
+				getApp().globalData.configInfo.isDark = this.isDark
 				this.setPageStyle()
-				for(let i=0; i < this.list.length; i++){
+				for (let i = 0; i < this.list.length; i++) {
 					this.$refs.rowItemRef[i].setViewStyle()
 				}
+				uni.$emit('changeDark', this.isDark)
 				// const infos = getApp().globalData.configInfo
 				// uni.setStorageSync('configInfo',getApp().globalData.configInfo)
 				// uni.reLaunch({
@@ -105,7 +118,7 @@
 				// })
 			},
 			// 设置页面样式
-			setPageStyle(){
+			setPageStyle() {
 				this.themeType = this.config.getThemeType()
 				this.isDart = getApp().globalData.configInfo.isDark
 				this.config.setDarkTabBarStyle()
@@ -126,10 +139,17 @@
 		border-radius: 10rpx;
 
 		.user_top {
+			position: relative;
 			height: 278rpx;
 			background-color: $theme_color;
 			border-radius: 10rpx 10rpx 0rpx 0rpx;
-
+			.dark_image{
+				position: absolute;
+				top: 20rpx;
+				right: 20rpx;
+				width: 60rpx;
+				height: 60rpx;
+			}
 			&_icon {
 				margin-top: -49rpx;
 				width: 140rpx;

@@ -4,14 +4,14 @@
 		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
 	},
 	"pages": [
-		{
-		    "path" : "pages/main/main/main",
-		    "style" :                                                                                    
-		    {
-		        "navigationStyle":"custom"
-		    }
+		// {
+		//     "path" : "pages/main/main/main",
+		//     "style" :                                                                                    
+		//     {
+		//         "navigationStyle":"custom"
+		//     }
 		    
-		},
+		// },
 		{
 			"path": "pages/main/home/home",
 			"style": {
@@ -63,11 +63,21 @@
             
         }
         
+        ,{
+            "path" : "pages/mine/setting/setting",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		// "navigationBarTextStyle": "white",
 		// "navigationBarBackgroundColor": "#C0E8B9",
 		// "backgroundColor": "#EEEEEE",
+		"backgroundColor":"rgba(0,0,0,0)",
 		"app-plus": {
 			"bounce": "none" // 取消APP端iOS回弹
 		}

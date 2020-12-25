@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="lff_content" :class="themeType + '_bg_color'">
 		<view class="list">
 			<view class="lf_row_a_f rows" v-for="(item,index) in list" :key="index" @click="chooseItem(item)">
 				<text class="rows_text">{{item.title}}</text>
@@ -27,6 +27,11 @@
 		onReady() {
 			this.common.setNavTextWay(this,'多语言')
 			this.text = this.$store.state.langInfo.language 
+		},
+		computed:{
+			themeType(){
+				return this.config.getThemeType()
+			}
 		},
 		methods:{
 			chooseItem(newItem){

@@ -16,13 +16,12 @@
 			this.isDart = getApp().globalData.configInfo.isDark
 			this.config.setDarkTabBarStyle()
 			this.setPageStyle()
+			uni.$on('changeDark',(data) =>{
+				this.setPageStyle()
+				// this.$forceUpdate()
+			})
 		},
 		onShow() {
-			// const newDark = getApp().globalData.configInfo.isDark
-			// if(this.isDart != newDark){
-			// 	this.isDart = newDark
-				this.setPageStyle()
-			// }
 			this.common.setNavTextWay(this,'首页')
 			uni.setTabBarItem({
 				index: 0,
@@ -36,6 +35,9 @@
 				"iconPath": "static/images/main/mine_normal.png",
 				"selectedIconPath": "static/images/main/mine_active.png"
 			})
+		},
+		onUnload() {
+			uni.$off('changeDark')
 		},
 		methods:{
 			setPageStyle(){

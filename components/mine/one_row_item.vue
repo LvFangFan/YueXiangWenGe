@@ -16,8 +16,11 @@
 
 <script>
 	export default {
-		name:'one_item',
+		name:'one_row_item',
 		props:{
+			themeType:{
+				type:String,default:''
+			},
 			title:{
 				type:String,default:''
 			},//标题
@@ -39,19 +42,16 @@
 		},
 		data(){
 			return {
-				themeType:'',
 				themeColor:'',
 				checked:false
 			}
 		},
-		created() {
-			this.setViewStyle()
+		created(){
+		   this.getThemeColor()
 		},
-		
 		methods:{
-			setViewStyle(){
-				this.themeType =  this.config.getThemeType()
-				this.themeColor = this.config.getNewThemeColor(this.themeType)
+			getThemeColor(){
+				this.themeColor = this.config.getNewThemeColor()
 			},
 			clickWay(){
 				this.$emit('chooseClick',this.title)

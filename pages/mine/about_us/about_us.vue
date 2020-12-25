@@ -13,7 +13,7 @@
 </template>
 
 <script>
-	import oneItem from '@/components/mine/one_item.vue'
+	import oneItem from '@/components/mine/one_row_item.vue'
 	export default {
 		components:{
 			oneItem
@@ -37,7 +37,7 @@
 						'arrow':true
 					},
 					{
-						'title': '版本更新',
+						'title': '版本号',
 						'desp': '',
 						'arrow':true
 					}
@@ -46,7 +46,7 @@
 		},
 		onReady() {
 			this.common.setNavTextWay(this,'关于我们')
-			this.versionText = this.$t('版本') + this.$store.state.version 
+			this.versionText = this.$t('版本号') + this.$store.state.version 
 		},
 		methods:{
 			// 点击某一列响应方法 title 为列表文字标识
@@ -60,7 +60,7 @@
 						break;
 					case '公司官网':
 						break;
-					case '版本更新':
+					case '版本号':
 						break;
 					default:
 						break;
