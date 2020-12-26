@@ -1,6 +1,6 @@
 <template>
 	<view class="lff_content" :class="themeType + '_bg_color'">
-		<view class="list">
+		<view class="list" :class="themeType + '_box_bg_color'">
 			<view class="lf_row_a_f rows" v-for="(item,index) in list" :key="index" @click="chooseItem(item)">
 				<text class="rows_text">{{item.title}}</text>
 				<u-icon v-if="text === item.title" class="rows_icon" name="checkmark" size="40"></u-icon>
@@ -23,6 +23,9 @@
 				],
 				text:'简体中文'
 			};
+		},
+		onLoad() {
+			this.config.setDarkNavBackground()
 		},
 		onReady() {
 			this.common.setNavTextWay(this,'多语言')
@@ -54,14 +57,10 @@
 <style lang="scss">
 	@import '~@/config/style/config.scss';
 	.list{
-		padding: 10rpx 10rpx 10rpx 20rpx;
-		margin: 45rpx 26rpx;
-		background-color: #FFFFFF;
-		border-radius: 10rpx;
+		padding: 0rpx 20rpx 10rpx 20rpx;
 		.rows{
 			height: 85rpx;
 			justify-content: space-between;
-			border-bottom: 1rpx solid #EEEEEE;
 			&:last-child{
 				border-bottom-width: 0;
 			}

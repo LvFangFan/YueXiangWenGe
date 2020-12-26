@@ -4,8 +4,8 @@
 			configInfo: {
 				isFirst: true, //是否第一次打开软件
 				lang: 'zh', //选择语言
-				themeType: 'normal', //主题类型
-				isDark: true, //暗夜模式
+				themeType: 'pink', //主题类型
+				isDark: false, //暗夜模式
 				fontSize:'36rpx'
 			}
 		},

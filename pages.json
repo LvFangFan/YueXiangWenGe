@@ -76,8 +76,7 @@
 	"globalStyle": {
 		// "navigationBarTextStyle": "white",
 		// "navigationBarBackgroundColor": "#C0E8B9",
-		// "backgroundColor": "#EEEEEE",
-		"backgroundColor":"rgba(0,0,0,0)",
+		"backgroundColor": "#000000",
 		"app-plus": {
 			"bounce": "none" // 取消APP端iOS回弹
 		}

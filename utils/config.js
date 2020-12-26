@@ -57,10 +57,14 @@ const getThemeColor = (themeType) => {
 		case 'normal':
 			newColor = '#C0E8B9'
 			break;
+		case 'pink':
+		    newColor = '#FF6EC7'
+			break;
 		default:
 			newColor = '#FFFFFF'
 			break;
 	}
+	
 	return newColor
 }
 // 获得主题颜色
@@ -70,6 +74,9 @@ const getNewThemeColor = () => {
 	switch (themeType) {
 		case 'normal':
 			newColor = '#C0E8B9'
+			break;
+		case 'pink':
+		    newColor = '#FF6EC7'
 			break;
 		default:
 			newColor = '#FFFFFF'

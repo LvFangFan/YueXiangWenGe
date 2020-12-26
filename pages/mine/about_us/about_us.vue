@@ -1,9 +1,9 @@
 <template>
-	<view class="lf_column_a_f">
-		<image class="logo_icon"></image>
+	<view class="lf_column_a_f lff_content" :class="themeType + '_bg_color'">
+		<image class="logo_icon" style="opacity: ;" :style="{opacity:themeType === 'dark' ? 0.5 : 1.0}"></image>
 		<text class="version_num">{{versionText}}</text>
 		<view class="us_content_view">
-			<one-item v-for="(item,index) in list" :key="index" :title="item.title" :desp="item.desp" :arrowShow="item.arrow" @chooseClick="chooseWay"></one-item>
+			<one-item v-for="(item,index) in list" :themeType="themeType" :key="index" :title="item.title" :desp="item.desp" :arrowShow="item.arrow" @chooseClick="chooseWay"></one-item>
 		</view>
 		<view class="us_desp lf_column_a_f">
 			<text>Lv Fang Fan Develop </text>
@@ -18,6 +18,7 @@
 		components:{
 			oneItem
 		},
+		
 		data() {
 			return {
 				versionText:'',
@@ -44,9 +45,17 @@
 				]
 			};
 		},
+		onLoad() {
+			this.config.setDarkNavBackground()
+		},
 		onReady() {
 			this.common.setNavTextWay(this,'关于我们')
 			this.versionText = this.$t('版本号') + this.$store.state.version 
+		},
+		computed:{
+			themeType(){
+				return this.config.getThemeType()
+			}
 		},
 		methods:{
 			// 点击某一列响应方法 title 为列表文字标识
