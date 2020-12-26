@@ -1,5 +1,5 @@
 <template>
-	<view class="lff_content" :class="themeType + '_bg_color'">
+	<view class="lff_content" :class="themeType + '_bg_color'" :style="{fontSize:getFontSize}">
 		<view class="user_content_view" :class="themeType + '_bg_color'">
 			<view class="user_top lf_column_a_f" :style="{opacity:themeType == 'dark' ? 0.75 : 1.0}">
 				<image class="user_top_icon" src="/static/images/mine/head_portrait.png"></image>
@@ -71,6 +71,9 @@
 		computed:{
 			darkImgUrl(){
 				return this.isDart ? '/static/images/mine/white_evening.png' : '/static/images/mine/white_day.png'
+			},
+			getFontSize(){
+			  return this.$store.getters.getPageFontClass
 			}
 		},
 		
@@ -159,7 +162,6 @@
 
 			&_text {
 				font-weight: 400;
-				font-size: 28rpx;
 				color: #FFFFFF;
 			}
 		}
